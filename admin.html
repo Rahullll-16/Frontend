@@ -246,7 +246,7 @@ async function loadFarmers(){
 
       <p>🏡 ${d.farmName || "N/A"}</p>
       <p>📍 ${d.location || "N/A"}</p>
-      <p>🌱 ${d.cropType || "N/A"}</p>
+      <p>🌱 ${d.crops?.length ? d.crops.join(", ") : "No crops"}</p> 
       <p>📏 ${d.landSize || "N/A"} acres</p>
 
       <hr>
