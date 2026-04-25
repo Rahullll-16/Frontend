@@ -7,19 +7,12 @@ router.post("/login", async (req, res) => {
   const { email, userId, password } = req.body;
 
   try {
-    let user;
+    // ✅ admin + farmer dono handle
+    const id = email || userId;
 
-    // 🔴 ADMIN LOGIN (email se)
-    if (email) {
-      user = await Sensor.findOne({ userId: email });
-    }
+    const user = await Sensor.findOne({ userId: id });
 
-    // 🟢 FARMER LOGIN (userId se)
-    if (userId) {
-      user = await Sensor.findOne({ userId });
-    }
-
-    console.log("USER:", user);
+    console.log("FOUND USER:", user);
 
     if (user && user.password === password) {
       return res.json({
@@ -29,9 +22,15 @@ router.post("/login", async (req, res) => {
       });
     }
 
-    res.status(401).json({ success: false, message: "Invalid credentials" });
+    res.status(401).json({
+      success: false,
+      message: "Invalid credentials",
+    });
   } catch (err) {
     console.log(err);
-    res.status(500).json({ success: false, message: "Server error" });
+    res.status(500).json({
+      success: false,
+      message: "Server error",
+    });
   }
 });
