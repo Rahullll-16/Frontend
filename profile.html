@@ -147,10 +147,10 @@ async function updateProfile(){
   console.log("Sending:", payload); // 🔍 DEBUG
 
   try{
-    const res = await fetch(`http://localhost:5000/api/data/farmer/${userId}`,{
-      method:"PUT",
-      headers:{ "Content-Type":"application/json" },
-      body: JSON.stringify(payload)
+    const res = await fetch(`https://fsdbackend-ev5d.onrender.com/api/data/farmer/${userId}`,{
+    method:"PUT",
+    headers:{ "Content-Type":"application/json" },
+    body: JSON.stringify(payload)
     });
 
     const data = await res.json();
@@ -181,7 +181,7 @@ async function loadProfile(){
   }
 
   try{
-    const res = await fetch(`http://localhost:5000/api/data/farmer/${userId}`);;
+    const res = await fetch(`https://fsdbackend-ev5d.onrender.com/api/data/farmer/${userId}`);;
     const data = await res.json();
 
     document.getElementById("p_userId").innerText = data.userId || "--";

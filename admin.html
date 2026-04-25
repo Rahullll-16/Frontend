@@ -218,7 +218,7 @@ window.onload = () => {
 // ---------------- FARMERS ----------------
 async function loadFarmers(){
   try{
-    const res = await fetch("http://127.0.0.1:5000/api/data/all");
+    const res = await fetch("https://fsdbackend-ev5d.onrender.com/api/data/all");
 
     if(!res.ok) throw new Error("Server error");
 
@@ -290,7 +290,7 @@ let latestSensor = null;
 async function loadWeather(city="Delhi"){
 
   try{
-    const res = await fetch(`http://localhost:5000/api/weather/${city}`);
+    const res = await fetch(`https://fsdbackend-ev5d.onrender.com/api/weather/${city}`);
     const data = await res.json();
 
     const box = document.getElementById("weatherBox");
@@ -537,7 +537,7 @@ async function createFarmer(){
 
     console.log("Sending:", payload); // 👈 DEBUG
 
-    const res = await fetch("http://127.0.0.1:5000/api/auth/create-farmer",{
+    const res = await fetch("https://fsdbackend-ev5d.onrender.com/api/auth/create-farmer",{
       method:"POST",
       headers:{ "Content-Type":"application/json" },
       body: JSON.stringify(payload)
@@ -569,7 +569,7 @@ window.onload = () => {
 };
 async function editFarmer(id){
 
-  const res = await fetch("http://127.0.0.1:5000/api/data/all");
+  const res = await fetch("https://fsdbackend-ev5d.onrender.com/api/data/all");
   const data = await res.json();
 
   const farmer = data.find(f => f.userId === id);
@@ -595,7 +595,7 @@ async function updateFarmer(){
     landSize: document.getElementById("editLandSize").value
   };
 
-  const res = await fetch(`http://127.0.0.1:5000/api/auth/update-farmer/${id}`,{
+  const res = await fetch(`https://fsdbackend-ev5d.onrender.com/api/auth/update-farmer/${id}`,{
     method:"PUT",
     headers:{ "Content-Type":"application/json" },
     body: JSON.stringify(payload)
@@ -615,7 +615,7 @@ async function updateFarmer(){
 async function deleteFarmer(id){
   if(!confirm("Delete this farmer?")) return;
 
-  await fetch(`http://127.0.0.1:5000/api/auth/delete-farmer/${id}`,{
+  await fetch(`https://fsdbackend-ev5d.onrender.com/api/auth/delete-farmer/${id}`,{
     method:"DELETE"
   });
 

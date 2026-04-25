@@ -202,7 +202,7 @@ async function loadWeather(city = "Delhi") {
   const box = document.getElementById("weatherBox");
 
   try {
-    const res = await fetch(`http://localhost:5000/api/weather/${city}`);
+    const res = await fetch(`https://fsdbackend-ev5d.onrender.com/api/weather/${city}`);
     
     const data = await res.json();
     latestWeather = data.list;
@@ -416,7 +416,7 @@ async function loadCrops(){
   }
 
   try{
-    const res = await fetch(`http://localhost:5000/api/crops/${userId}`);
+    const res = await fetch(`https://fsdbackend-ev5d.onrender.com/api/crops/${userId}`);
 
     if(!res.ok){
       throw new Error("Failed to fetch crops");
@@ -532,7 +532,7 @@ async function openEditById(id){
     currentCropId = id;
 
     // 🔹 Fetch crop from backend
-    const res = await fetch(`http://localhost:5000/api/crops/${id}`);
+    const res = await fetch(`https://fsdbackend-ev5d.onrender.com/api/crops/${id}`);
     const crop = await res.json();
 
     if(!crop){
@@ -566,7 +566,7 @@ async function addCrop(){
   }
 
   try{
-    const res = await fetch("http://localhost:5000/api/crops",{
+    const res = await fetch("https://fsdbackend-ev5d.onrender.com/api/crops",{
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -605,7 +605,7 @@ async function deleteCrop(id){
   if(!confirm("Delete this crop?")) return;
 
   try{
-    const res = await fetch(`http://localhost:5000/api/crops/${id}`,{
+    const res = await fetch(`https://fsdbackend-ev5d.onrender.com/api/crops/${id}`,{
       method: "DELETE"
     });
 
@@ -629,7 +629,7 @@ async function editCrop(crop){
   const moisture = prompt("Moisture", crop.idealMoisture);
   const temp = prompt("Temp", crop.idealTemp);
 
-  await fetch(`http://localhost:5000/api/crops/update/${crop._id}`,{
+  await fetch(`https://fsdbackend-ev5d.onrender.com/api/crops/update/${crop._id}`,{
     method:"PUT",
     headers:{ "Content-Type":"application/json" },
     body: JSON.stringify({
@@ -667,7 +667,7 @@ async function updateCrop(){
     };
 
     const res = await fetch(
-      `http://localhost:5000/api/crops/update/${currentCropId}`,
+      `https://fsdbackend-ev5d.onrender.com/api/crops/update/${currentCropId}`,
       {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -701,7 +701,7 @@ const urlId = params.get("userId");
 
 const userId = urlId || localStorage.getItem("userId");
 
-  const res = await fetch(`http://localhost:5000/api/alerts/${userId}`);
+  const res = await fetch(`https://fsdbackend-ev5d.onrender.com/api/alerts/${userId}`);
   const data = await res.json();
 
   const box = document.getElementById("farmerAlerts");
@@ -725,7 +725,7 @@ async function deleteAlert(id){
   if(!confirm("Delete this alert?")) return;
 
   try{
-    const res = await fetch(`http://localhost:5000/api/alerts/${id}`,{
+    const res = await fetch(`https://fsdbackend-ev5d.onrender.com/api/alerts/${id}`,{
       method:"DELETE"
     });
 
@@ -756,7 +756,7 @@ const userId = urlId || localStorage.getItem("userId");
   }
 
   try{
-    const res = await fetch(`http://localhost:5000/api/data/${userId}`);
+    const res = await fetch(`https://fsdbackend-ev5d.onrender.com/api/data/${userId}`);
     const data = await res.json();
 
     if(!data || data.length === 0){
