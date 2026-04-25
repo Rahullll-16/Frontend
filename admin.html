@@ -629,7 +629,7 @@ async function sendAlert(){
     type: document.getElementById("alertType").value
   };
 
-  const res = await fetch("http://localhost:5000/api/alerts/create",{
+  const res = await fetch("https://fsdbackend-ev5d.onrender.com/api/alerts/create",{
     method:"POST",
     headers:{ "Content-Type":"application/json" },
     body: JSON.stringify(payload)
